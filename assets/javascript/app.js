@@ -57,6 +57,12 @@ function start() {
     clockRunning = true;
     
   }
+  for (let i =0; i < myQuestions.length; i++ ) {
+
+    $("#question-text").append("Question " + [i+1] + ". " + myQuestions[i].question +" Answer Options: " + "a. " + myQuestions[i].answers.a + "  b. " + myQuestions[i].answers.b + "  c. " + myQuestions[i].answers.c + "  d. " + myQuestions[i].answers.d + " ");
+    
+  
+  }
   
 }
 
@@ -88,9 +94,3 @@ $("#score").text("Score: " + score + " points");
 
 
 
-for (let i =0; i < myQuestions.length; i++ ) {
-
-  $("#question-text").append("Question " + [i+1] + ". " + myQuestions[i].question +" Answer Options: " + "a. " + myQuestions[i].answers.a + "  b. " + myQuestions[i].answers.b + "  c. " + myQuestions[i].answers.c + "  d. " + myQuestions[i].answers.d + " ");
-  
-
-}
