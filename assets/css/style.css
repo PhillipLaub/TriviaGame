@@ -11,3 +11,7 @@ body {
     text-align: center;
     background:teal;
 }
+
+#question-text {
+    color:white;
+}

@@ -8,7 +8,8 @@ var myQuestions = [
       answers: {
         a: "Superman",
         b: "The Terminator",
-        c: "Waluigi, obviously"
+        c: "Waluigi, obviously",
+        d: "Somthin"
       },
       correctAnswer: "c"
     },
@@ -17,7 +18,8 @@ var myQuestions = [
       answers: {
         a: "SitePoint",
         b: "Simple Steps Code",
-        c: "Trick question; they're both the best"
+        c: "Trick question; they're both the best",
+        d: "somethin"
       },
       correctAnswer: "c"
     },
@@ -32,20 +34,6 @@ var myQuestions = [
       correctAnswer: "d"
     }
   ];
-
-  // var startGame = function() {}
-
-  // for ( let i = 0; i < myQuestions.length; i++) {
-  //     var response = myQuestions[i];
-  //     if (response == questions[i].correctAnswer) {
-  //       score++;
-  //     }
-  //     else {
-  //       //wrong
-  //     }
-
-  // }
-
   
 // This code will run as soon as the page loads
 window.onload = function() {
@@ -69,7 +57,7 @@ function start() {
     clockRunning = true;
     
   }
-
+  
 }
 
 function count() {
@@ -81,6 +69,8 @@ function count() {
   
     // DONE: Use the variable we just created to show the converted time in the "display" div.
     $("#display").text("Time Remaining: " + converted + " seconds");
+
+    
   }
   
 
@@ -93,9 +83,14 @@ function timeConverter(t) {
   return seconds;
 }
 
-$("#score").text("Current Score: " + score + " points");
+$("#score").text("Score: " + score + " points");
 
 
 
 
+for (let i =0; i < myQuestions.length; i++ ) {
 
+  $("#question-text").append("Question " + [i+1] + ". " + myQuestions[i].question +" Answer Options: " + "a. " + myQuestions[i].answers.a + "  b. " + myQuestions[i].answers.b + "  c. " + myQuestions[i].answers.c + "  d. " + myQuestions[i].answers.d + " ");
+  
+
+}
