@@ -1,17 +1,35 @@
-h1 {
+.title {
     color:red;
+    font-size:60px;
 }
 
 .container {
     background: black;
     color: white;
+    padding-bottom:20px;
+    margin-top:50px;
 }
 
 body {
     text-align: center;
     background:teal;
+    background-image: url("../images/background.jpg");
+    font-family: 'Play', sans-serif;
 }
 
 #question-text {
     color:white;
+}
+
+.option {
+    padding-right:15px;
+    font-size:20px;
+}
+
+input {
+    margin:10px;
+}
+
+#question {
+    font-size:40px;
 }
