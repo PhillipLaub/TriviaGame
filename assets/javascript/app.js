@@ -10,12 +10,12 @@ var questions = [
   },
 
   {
-    "question": "Who is the strongest?",
-    "option1": "Superman",
-    "option2": "The Terminator",
-    "option3": "Waluigi, obviously",
-    "option4": "Somthin",
-    "answer": "1"
+    "question": "Who is the fastest?",
+    "option1": "Quicksilver",
+    "option2": "Flash",
+    "option3": "Superman",
+    "option4": "Batman",
+    "answer": "2"
   },
 
   {
@@ -59,14 +59,20 @@ function start() {
   if (!clockRunning) {
     intervalId = setInterval(count, 1000);
     clockRunning = true;
-
+    
   }
-  for (let i =0; i < myQuestions.length; i++ ) {
+  //display inline once start button is clicked
+  $(".option").css( "display", "block" );
 
-    $("#question-text").append("Question " + [i+1] + ". " + myQuestions[i].question +" Answer Options: " + "a. " + myQuestions[i].answers.a + "  b. " + myQuestions[i].answers.b + "  c. " + myQuestions[i].answers.c + "  d. " + myQuestions[i].answers.d + " ");
+loadQuestion(currentQuestion);
+  // for (let i =0; i < questions.length; i++ ) {
+
+  //       // $("#question-text").append("Question " + [i+1] + ". " + myQuestions[i].question +" Answer Options: " + "a. " + myQuestions[i].answers.a + "  b. " + myQuestions[i].answers.b + "  c. " + myQuestions[i].answers.c + "  d. " + myQuestions[i].answers.d + " ");
 
 
-  }
+  // }
+
+  
 
 }
 
@@ -80,6 +86,9 @@ function count() {
     // DONE: Use the variable we just created to show the converted time in the "display" div.
     $("#display").text("Time Remaining: " + converted + " seconds");
 
+    if ( time == 0) {
+      alert("You Lose");
+    }
 
   }
 
@@ -138,10 +147,18 @@ function loadNextQuestion() {
   if (currentQuestion == totQuestions) {
     container.style.display = "none";
     resultCont.style.display = "";
-    resultCont.textContent = "Your Score: " + score;
+    resultCont.textContent = "Your Score: " + score + " / " + questions.length*10;
+    //add reset button here
+
+    // var resetButton = document.getElementById("resetButton");
+
+    //
     return;
   }
   loadQuestion(currentQuestion);
 }
 
-loadQuestion(currentQuestion);
+
+// var reset = function() {
+//   start();
+// }

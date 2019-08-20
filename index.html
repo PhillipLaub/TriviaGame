@@ -81,6 +81,7 @@
       <div class="col-md-4"></div>
     </div>
     <div id="question" class="question"></div>
+    <!--Questions hidden until start pressed-->
     <label class="option"><input type="radio" name="option" value="1" /><span id="opt1"></span></label>
     <label class="option"><input type="radio" name="option" value="2" /><span id="opt2"></span></label>
     <label class="option"><input type="radio" name="option" value="3" /><span id="opt3"></span></label>
@@ -89,6 +90,8 @@
     <button id="nextButton" class="next-btn" onclick="loadNextQuestion();">Next Question</button>
   </div>
   <div id="result" class="container result" style="display:none;"></div>
+  <!-- <button id="resetButton" class="reset-btn" onclick="reset();">Reset</button> -->
+  <!-- <div class="col-md-4" id="buttons"><button id="start">Start</button></div> -->
 
   <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script type="text/javascript" src="assets/javascript/app.js"></script>

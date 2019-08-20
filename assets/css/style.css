@@ -24,6 +24,7 @@ body {
 .option {
     padding-right:15px;
     font-size:20px;
+    display:none;
 }
 
 input {
