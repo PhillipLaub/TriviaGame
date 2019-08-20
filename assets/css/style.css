@@ -15,6 +15,7 @@ body {
     background:teal;
     background-image: url("../images/background.jpg");
     font-family: 'Play', sans-serif;
+    margin-top:100px;
 }
 
 #question-text {
@@ -39,8 +40,15 @@ input {
     width:200px;
     background:black;
     color:white;
+    margin-top:100px;
 }
 
 .hide {
     display:none;
+}
+
+#result {
+    font-size:60px;
+    color:white;
+    background: black;
 }
