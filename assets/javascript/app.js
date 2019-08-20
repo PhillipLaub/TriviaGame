@@ -63,6 +63,9 @@ function start() {
   }
   //display inline once start button is clicked
   $(".option").css( "display", "block" );
+  //nextButton.style.display = "";
+  $("#nextButton").css("display", "inline");
+  $("#start").css("display", "none");
 
 loadQuestion(currentQuestion);
   // for (let i =0; i < questions.length; i++ ) {
@@ -86,9 +89,9 @@ function count() {
     // DONE: Use the variable we just created to show the converted time in the "display" div.
     $("#display").text("Time Remaining: " + converted + " seconds");
 
-    if ( time == 0) {
-      alert("You Lose");
-    }
+    // if ( time == 0) {
+    //   alert("You Lose");
+    // }
 
   }
 
@@ -119,6 +122,7 @@ var opt4 = document.getElementById("opt4");
 
 var nextButton = document.getElementById("nextButton");
 var resultCont = document.getElementById("result");
+var resetButton = document.getElementById("resetButton")
 
 function loadQuestion(questionIndex) {
   var q = questions[questionIndex];
@@ -127,10 +131,13 @@ function loadQuestion(questionIndex) {
   opt2.textContent = q.option2;
   opt3.textContent = q.option3;
   opt4.textContent = q.option4;
+
+  
 };
 
 function loadNextQuestion() {
   var selectedOption = document.querySelector("input[type=radio]:checked");
+  
   if (!selectedOption) {
     alert("Please select your answer!");
     return;
@@ -147,11 +154,12 @@ function loadNextQuestion() {
   if (currentQuestion == totQuestions) {
     container.style.display = "none";
     resultCont.style.display = "";
+    $("#result").css("display", "inline");
+    
     resultCont.textContent = "Your Score: " + score + " / " + questions.length*10;
     //add reset button here
-
-    // var resetButton = document.getElementById("resetButton");
-
+    $("#resetButton").css("display", "inline");
+    
     //
     return;
   }
@@ -159,6 +167,6 @@ function loadNextQuestion() {
 }
 
 
-// var reset = function() {
-//   start();
-// }
+var reset = function() {
+  start();
+}
