@@ -43,7 +43,7 @@ var questions = [
 window.onload = function () {
 
   $("#start").on("click", start);
-  
+
 
 };
 
@@ -70,16 +70,16 @@ function start() {
   currentQuestion = 0;
   loadQuestion(currentQuestion);
   //edits below
-  time=5;
-  score=0;
-//hide results
-$("#result").css("display", "none");
-//hide reset button
-$("#resetButton").css("display", "none");
-//display main container from beginning
-$("#quizContainer").css("display", "block");
-//display next button
-nextButton.textContent = "Next Question";
+  time = 5;
+  score = 0;
+  //hide results
+  $("#result").css("display", "none");
+  //hide reset button
+  $("#resetButton").css("display", "none");
+  //display main container from beginning
+  $("#quizContainer").css("display", "block");
+  //display next button
+  nextButton.textContent = "Next Question";
 }
 
 
@@ -89,29 +89,37 @@ function count() {
   if (time > 0) {
     time--;
     var converted = timeConverter(time);
-    // console.log(converted);
+    
 
     // DONE: Use the variable we just created to show the converted time in the "display" div.
     $("#display").text("Time Remaining: " + converted + " seconds");
 
-    // if ( time == 0) {
-    //   alert("You Lose");
-    // }
 
   }
+
   
 
-  if (time == 0 && currentQuestion < totQuestions -1) {
+  if (currentQuestion == totQuestions - 1) {
+    nextButton.textContent = "Finish";
+    if (time == 0) {
+      alert("Time is up, all done");
+      time = 9999;
+      $("#quizContainer").css("display", "none");
+      resultCont.textContent = "Your Score: " + score + " / " + questions.length * 10;
+      $("#result").css("display", "inline");
+      $("#resetButton").css("display", "inline");
+    }
+
+  }
+
+  else if (time == 0 && currentQuestion < totQuestions - 1) {
     alert("Time is up");
     currentQuestion++;
     loadQuestion(currentQuestion);
-    time=5;
-    if (currentQuestion == totQuestions - 1) {
-      nextButton.textContent = "Finish";
-    }
-    
-    
+    time = 5;
+
   }
+
 
 }
 
@@ -148,7 +156,7 @@ function loadQuestion(questionIndex) {
   opt3.textContent = q.option3;
   opt4.textContent = q.option4;
 
-  
+
 
 };
 
@@ -160,10 +168,10 @@ function loadNextQuestion() {
   //   return;
   // }
 
-  
-  time=5;//resets the countdown on each question
+
+  time = 5;//resets the countdown on each question
   var answer = selectedOption.value;
-  
+
   if (questions[currentQuestion].answer == answer) {
     score += 10;
   }
@@ -186,7 +194,7 @@ function loadNextQuestion() {
   } else {
     loadQuestion(currentQuestion);
   }
-  
+
 }
 
 $("#resetButton").on("click", start);
