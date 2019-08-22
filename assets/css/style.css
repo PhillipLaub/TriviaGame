@@ -25,7 +25,6 @@ body {
 .option {
     padding-right:15px;
     font-size:20px;
-    display:none;
 }
 ul {
     list-style: none;
@@ -40,7 +39,16 @@ input {
 label {
     cursor: pointer;
 }
-input:checked{
+input:checked + #opt1{
+    color: red;
+}
+input:checked + #opt2{
+    color: red;
+}
+input:checked + #opt3{
+    color: red;
+}
+input:checked + #opt4{
     color: red;
 }
 
