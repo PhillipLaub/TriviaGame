@@ -55,6 +55,7 @@ var opt4 = document.getElementById("opt4");
 
 var nextButton = document.getElementById("nextButton");
 var resultCont = document.getElementById("result");
+var resultCont2 = document.getElementById("result2");
 var resetButton = document.getElementById("resetButton")
 
 $("#resetButton").on("click", start);
@@ -68,7 +69,7 @@ window.onload = function () {
 function start() {
 
   if (!clockRunning) {
-    intervalId = setInterval(count, 100000);
+    intervalId = setInterval(count, 1000);
     clockRunning = true;
 
   }
@@ -83,6 +84,7 @@ function start() {
   score = 0;
 
   $("#result").css("display", "none");
+  $("#result2").css("display", "none");
   $("#resetButton").css("display", "none");
   $("#quizContainer").css("display", "block");
 
@@ -100,11 +102,16 @@ function count() {
   if (currentQuestion == totQuestions - 1) {
     nextButton.textContent = "Finish";
     if (time == 0) {
+      
+    var incorrect = questions.length - score;
       alert("Time is up. \r\n You're all done!");
       time = 9999;
       $("#quizContainer").css("display", "none");
-      resultCont.textContent = "Your Score: " + score + " / " + questions.length;
-      $("#result").css("display", "inline");
+      var incorrect = questions.length - score;
+      resultCont.textContent = "Answers Correct: " + score;
+      resultCont2.textContent = "You Missed: " + incorrect;
+      $("#result").css("display", "block");
+      $("#result2").css("display", "block");
       $("#resetButton").css("display", "inline");
     }
 
@@ -155,9 +162,12 @@ function loadNextQuestion() {
     container.style.display = "none";
     resultCont.style.display = "";
     $("#result").css("display", "block");
-    resultCont.textContent = "Answers Correct: " + score + "\n" + "You Missed: " + incorrect;
+    resultCont.textContent = "Answers Correct: " + score;
+    resultCont2.style.display = "";
+    $("#result2").css("display", "block");
+    resultCont2.textContent = "You Missed: " + incorrect;
     $("#resetButton").css("display", "inline");
-    
+
     return;
   }
 

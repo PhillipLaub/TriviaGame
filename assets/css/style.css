@@ -40,16 +40,16 @@ label {
     cursor: pointer;
 }
 input:checked + #opt1{
-    color: red;
+    color: yellow;;
 }
 input:checked + #opt2{
-    color: red;
+    color: yellow;
 }
 input:checked + #opt3{
-    color: red;
+    color: yellow;
 }
 input:checked + #opt4{
-    color: red;
+    color:yellow;
 }
 
 #question {
