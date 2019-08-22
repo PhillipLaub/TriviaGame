@@ -89,7 +89,7 @@ function count() {
   if (time > 0) {
     time--;
     var converted = timeConverter(time);
-    console.log(converted);
+    // console.log(converted);
 
     // DONE: Use the variable we just created to show the converted time in the "display" div.
     $("#display").text("Time Remaining: " + converted + " seconds");
@@ -98,6 +98,19 @@ function count() {
     //   alert("You Lose");
     // }
 
+  }
+  
+
+  if (time == 0 && currentQuestion < totQuestions -1) {
+    alert("Time is up");
+    currentQuestion++;
+    loadQuestion(currentQuestion);
+    time=5;
+    if (currentQuestion == totQuestions - 1) {
+      nextButton.textContent = "Finish";
+    }
+    
+    
   }
 
 }
@@ -126,6 +139,7 @@ var nextButton = document.getElementById("nextButton");
 var resultCont = document.getElementById("result");
 var resetButton = document.getElementById("resetButton")
 
+
 function loadQuestion(questionIndex) {
   var q = questions[questionIndex];
   questionElement.textContent = (questionIndex + 1) + ". " + q.question;
@@ -141,11 +155,15 @@ function loadQuestion(questionIndex) {
 function loadNextQuestion() {
   var selectedOption = document.querySelector("input[type=radio]:checked");
 
-  if (!selectedOption) {
-    alert("Please select your answer!");
-    return;
-  }
+  // if (!selectedOption) {
+  //   alert("Too Late!");
+  //   return;
+  // }
+
+  
+  time=5;//resets the countdown on each question
   var answer = selectedOption.value;
+  
   if (questions[currentQuestion].answer == answer) {
     score += 10;
   }
@@ -172,16 +190,3 @@ function loadNextQuestion() {
 }
 
 $("#resetButton").on("click", start);
-// var reset = function () {
-  
-//   loadQuestion();
-// }
-
-// $('#resetButton').on('click', function (e) {
-  
-  
-//   currentQuestion = 0;
-//   selectedOption = [];
-//   loadQuestion();
-//   $('#start').hide();
-// });
