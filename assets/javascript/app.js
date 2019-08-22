@@ -15,7 +15,7 @@ var questions = [
     "option2": "Flash",
     "option3": "Superman",
     "option4": "Batman",
-    "answer": "2"
+    "answer": "1"
   },
 
   {
@@ -40,9 +40,10 @@ var questions = [
 ];
 
 // This code will run as soon as the page loads
-window.onload = function() {
+window.onload = function () {
 
   $("#start").on("click", start);
+  
 
 };
 
@@ -59,29 +60,33 @@ function start() {
   if (!clockRunning) {
     intervalId = setInterval(count, 1000);
     clockRunning = true;
-    
+
   }
   //display inline once start button is clicked
-  $(".option").css( "display", "block" );
-  //nextButton.style.display = "";
+  $(".option").css("display", "block");
   $("#nextButton").css("display", "inline");
   $("#start").css("display", "none");
 
-loadQuestion(currentQuestion);
-  // for (let i =0; i < questions.length; i++ ) {
-
-  //       // $("#question-text").append("Question " + [i+1] + ". " + myQuestions[i].question +" Answer Options: " + "a. " + myQuestions[i].answers.a + "  b. " + myQuestions[i].answers.b + "  c. " + myQuestions[i].answers.c + "  d. " + myQuestions[i].answers.d + " ");
-
-
-  // }
-
-  
-
+  currentQuestion = 0;
+  loadQuestion(currentQuestion);
+  //edits below
+  time=5;
+  score=0;
+//hide results
+$("#result").css("display", "none");
+//hide reset button
+$("#resetButton").css("display", "none");
+//display main container from beginning
+$("#quizContainer").css("display", "block");
+//display next button
+nextButton.textContent = "Next Question";
 }
+
+
 
 function count() {
 
-  if ( time > 0) {
+  if (time > 0) {
     time--;
     var converted = timeConverter(time);
     console.log(converted);
@@ -95,9 +100,8 @@ function count() {
 
   }
 
-
-
 }
+
 function timeConverter(t) {
 
   var minutes = Math.floor(t / 5);
@@ -106,8 +110,6 @@ function timeConverter(t) {
 }
 
 $("#score").text("Score: " + score + " points");
-
-
 
 var currentQuestion = 0;
 var score = 0;
@@ -133,11 +135,12 @@ function loadQuestion(questionIndex) {
   opt4.textContent = q.option4;
 
   
+
 };
 
 function loadNextQuestion() {
   var selectedOption = document.querySelector("input[type=radio]:checked");
-  
+
   if (!selectedOption) {
     alert("Please select your answer!");
     return;
@@ -155,18 +158,30 @@ function loadNextQuestion() {
     container.style.display = "none";
     resultCont.style.display = "";
     $("#result").css("display", "inline");
-    
-    resultCont.textContent = "Your Score: " + score + " / " + questions.length*10;
+
+    resultCont.textContent = "Your Score: " + score + " / " + questions.length * 10;
     //add reset button here
     $("#resetButton").css("display", "inline");
-    
+
     //
     return;
+  } else {
+    loadQuestion(currentQuestion);
   }
-  loadQuestion(currentQuestion);
+  
 }
 
+$("#resetButton").on("click", start);
+// var reset = function () {
+  
+//   loadQuestion();
+// }
 
-var reset = function() {
-  start();
-}
+// $('#resetButton').on('click', function (e) {
+  
+  
+//   currentQuestion = 0;
+//   selectedOption = [];
+//   loadQuestion();
+//   $('#start').hide();
+// });
