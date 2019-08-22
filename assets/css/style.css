@@ -27,9 +27,21 @@ body {
     font-size:20px;
     display:none;
 }
-
+ul {
+    list-style: none;
+}
+li {
+    display: inline-block;
+    margin-right: 10px;
+}
 input {
-    margin:10px;
+    visibility:hidden;
+}
+label {
+    cursor: pointer;
+}
+input:checked{
+    color: red;
 }
 
 #question {
@@ -48,6 +60,12 @@ input {
 }
 
 #result {
+    font-size:60px;
+    color:white;
+    background: black;
+}
+
+#result2 {
     font-size:60px;
     color:white;
     background: black;

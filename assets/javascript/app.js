@@ -39,102 +39,12 @@ var questions = [
 
 ];
 
-// This code will run as soon as the page loads
-window.onload = function () {
-
-  $("#start").on("click", start);
-
-
-};
-
-//  Variable that will hold our setInterval that runs the stopwatch
-var intervalId;
-
-// prevents the clock from being sped up unnecessarily
-var clockRunning = false;
-var time = 5;
-
-function start() {
-
-  // DONE: Use setInterval to start the count here and set the clock to running.
-  if (!clockRunning) {
-    intervalId = setInterval(count, 1000);
-    clockRunning = true;
-
-  }
-  //display inline once start button is clicked
-  $(".option").css("display", "block");
-  $("#nextButton").css("display", "inline");
-  $("#start").css("display", "none");
-
-  currentQuestion = 0;
-  loadQuestion(currentQuestion);
-  //edits below
-  time = 5;
-  score = 0;
-  //hide results
-  $("#result").css("display", "none");
-  //hide reset button
-  $("#resetButton").css("display", "none");
-  //display main container from beginning
-  $("#quizContainer").css("display", "block");
-  //display next button
-  nextButton.textContent = "Next Question";
-}
-
-
-
-function count() {
-
-  if (time > 0) {
-    time--;
-    var converted = timeConverter(time);
-    
-
-    // DONE: Use the variable we just created to show the converted time in the "display" div.
-    $("#display").text("Time Remaining: " + converted + " seconds");
-
-
-  }
-
-  
-
-  if (currentQuestion == totQuestions - 1) {
-    nextButton.textContent = "Finish";
-    if (time == 0) {
-      alert("Time is up, all done");
-      time = 9999;
-      $("#quizContainer").css("display", "none");
-      resultCont.textContent = "Your Score: " + score + " / " + questions.length * 10;
-      $("#result").css("display", "inline");
-      $("#resetButton").css("display", "inline");
-    }
-
-  }
-
-  else if (time == 0 && currentQuestion < totQuestions - 1) {
-    alert("Time is up");
-    currentQuestion++;
-    loadQuestion(currentQuestion);
-    time = 5;
-
-  }
-
-
-}
-
-function timeConverter(t) {
-
-  var minutes = Math.floor(t / 5);
-  var seconds = t - (minutes * 5);
-  return seconds;
-}
-
-$("#score").text("Score: " + score + " points");
-
 var currentQuestion = 0;
 var score = 0;
 var totQuestions = questions.length;
+var intervalId;
+var clockRunning = false;
+var time = 5;
 
 var container = document.getElementById("quizContainer");
 var questionElement = document.getElementById("question");
@@ -147,6 +57,73 @@ var nextButton = document.getElementById("nextButton");
 var resultCont = document.getElementById("result");
 var resetButton = document.getElementById("resetButton")
 
+$("#resetButton").on("click", start);
+$("#score").text("Score: " + score + " points");
+
+window.onload = function () {
+  $("#start").on("click", start);
+};
+
+
+function start() {
+
+  if (!clockRunning) {
+    intervalId = setInterval(count, 100000);
+    clockRunning = true;
+
+  }
+
+  $(".option").css("display", "block");
+  $("#nextButton").css("display", "inline");
+  $("#start").css("display", "none");
+
+  currentQuestion = 0;
+  loadQuestion(currentQuestion);
+  time = 5;
+  score = 0;
+
+  $("#result").css("display", "none");
+  $("#resetButton").css("display", "none");
+  $("#quizContainer").css("display", "block");
+
+  nextButton.textContent = "Next Question";
+}
+
+function count() {
+
+  if (time > 0) {
+    time--;
+    var converted = timeConverter(time);
+    $("#display").text("Time Remaining: " + converted);
+  }
+
+  if (currentQuestion == totQuestions - 1) {
+    nextButton.textContent = "Finish";
+    if (time == 0) {
+      alert("Time is up. \r\n You're all done!");
+      time = 9999;
+      $("#quizContainer").css("display", "none");
+      resultCont.textContent = "Your Score: " + score + " / " + questions.length;
+      $("#result").css("display", "inline");
+      $("#resetButton").css("display", "inline");
+    }
+
+  }
+
+  else if (time == 0 && currentQuestion < totQuestions - 1) {
+    alert("Time is up... \r\n(You gotta be quicker than that!)");
+    currentQuestion++;
+    loadQuestion(currentQuestion);
+    time = 6;
+
+  }
+}
+
+function timeConverter(t) {
+  var minutes = Math.floor(t / 6);
+  var seconds = t - (minutes * 6);
+  return seconds;
+}
 
 function loadQuestion(questionIndex) {
   var q = questions[questionIndex];
@@ -155,46 +132,38 @@ function loadQuestion(questionIndex) {
   opt2.textContent = q.option2;
   opt3.textContent = q.option3;
   opt4.textContent = q.option4;
-
-
-
 };
 
 function loadNextQuestion() {
   var selectedOption = document.querySelector("input[type=radio]:checked");
-
-  // if (!selectedOption) {
-  //   alert("Too Late!");
-  //   return;
-  // }
-
-
   time = 5;//resets the countdown on each question
   var answer = selectedOption.value;
 
   if (questions[currentQuestion].answer == answer) {
-    score += 10;
+    score += 1;
   }
+
   selectedOption.checked = false;
   currentQuestion++;
+
   if (currentQuestion == totQuestions - 1) {
     nextButton.textContent = "Finish";
   }
+
   if (currentQuestion == totQuestions) {
+    var incorrect = questions.length - score;
     container.style.display = "none";
     resultCont.style.display = "";
-    $("#result").css("display", "inline");
-
-    resultCont.textContent = "Your Score: " + score + " / " + questions.length * 10;
-    //add reset button here
+    $("#result").css("display", "block");
+    resultCont.textContent = "Answers Correct: " + score + "\n" + "You Missed: " + incorrect;
     $("#resetButton").css("display", "inline");
-
-    //
+    
     return;
-  } else {
-    loadQuestion(currentQuestion);
   }
 
+  else {
+    loadQuestion(currentQuestion);
+  }
 }
 
-$("#resetButton").on("click", start);
+
