@@ -1,21 +1,32 @@
 .title {
-    color:red;
+    color:green;
     font-size:60px;
+    padding-top:15px;
 }
 
 .container {
-    background: black;
-    color: white;
+    color:white;
     padding-bottom:20px;
-    margin-top:50px;
+    margin-top:100px;
+    opacity:0.9;
+    background:black;
+    /* background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;  */
+    border-radius: 50%;
+    
 }
+
+
 
 body {
     text-align: center;
     background:teal;
-    background-image: url("../images/background.jpg");
+    background-image: url("../images/background1.png");
     font-family: 'Play', sans-serif;
-    margin-top:100px;
+    /* margin-top:100px;
+    background-size: cover;
+    background-position: center;  */
 }
 
 #question-text {
@@ -77,4 +88,9 @@ input:checked + #opt4{
     font-size:60px;
     color:white;
     background: black;
+}
+
+button {
+    /* background-image: url("../images/btnbg.ico"); */
+    background: green;
 }

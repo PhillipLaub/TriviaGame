@@ -15,7 +15,7 @@ var questions = [
     "option2": "Flash",
     "option3": "Superman",
     "option4": "Batman",
-    "answer": "1"
+    "answer": "2"
   },
 
   {
@@ -69,7 +69,7 @@ window.onload = function () {
 function start() {
 
   if (!clockRunning) {
-    intervalId = setInterval(count, 1000);
+    intervalId = setInterval(count, 100000);
     clockRunning = true;
 
   }
