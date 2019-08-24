@@ -101,8 +101,8 @@ button {
     animation: pulse 2s infinite;
   }
   
-  title {
-    font-family: 'Gloria Hallelujah', cursive;
+  #font1 {
+    font-family: 'Gloria Hallelujah', cursive !important;
   }
   
   @-webkit-keyframes pulse {
