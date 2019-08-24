@@ -36,7 +36,7 @@ var questions = [
     "answer": "3"
   },
   {
-    "question": "What was Rick's favorite exhibit in the park fromr the last question?",
+    "question": "What was Rick's favorite exhibit in the park from the last question?",
     "option1": "Bladder Falls",
     "option2": "Pirates of the Pancreas",
     "option3": "The Bone Train",
@@ -170,7 +170,7 @@ var score = 0;
 var totQuestions = questions.length;
 var intervalId;
 var clockRunning = false;
-var time = 5;
+var time = 6;
 
 var container = document.getElementById("quizContainer");
 var questionElement = document.getElementById("question");
@@ -203,6 +203,7 @@ function start() {
   $(".option").css("display", "block");
   $("#nextButton").css("display", "inline");
   $("#start").css("display", "none");
+  
 
   currentQuestion = 0;
   loadQuestion(currentQuestion);
@@ -269,7 +270,10 @@ function loadQuestion(questionIndex) {
 
 function loadNextQuestion() {
   var selectedOption = document.querySelector("input[type=radio]:checked");
-  time = 5;//resets the countdown on each question
+  if (!selectedOption) {
+    alert("Pick an option!")
+  }
+  time = 6;//resets the countdown on each question
   var answer = selectedOption.value;
 
   if (questions[currentQuestion].answer == answer) {
