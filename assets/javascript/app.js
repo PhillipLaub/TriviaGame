@@ -195,7 +195,7 @@ window.onload = function () {
 function start() {
 
   if (!clockRunning) {
-    intervalId = setInterval(count, 1000);
+    intervalId = setInterval(count, 100000);
     clockRunning = true;
 
   }

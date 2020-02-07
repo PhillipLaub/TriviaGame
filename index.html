@@ -12,13 +12,14 @@
   <link href="https://fonts.googleapis.com/css?family=Play&display=swap" rel="stylesheet">
   <link rel="shortcut icon" type="image/x-icon" href="./assets/images/logo.ico" />
   <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css?family=Righteous&display=swap" rel="stylesheet">
 
 </head>
 
 <body>
 
   <div id="quizContainer" class="container pulse">
-    <div class="title">TRIVIA GAME</div>
+    <div><h1 class="title">TRIVIA GAME</h1></div>
     <div class="row" id="time-remaining">
       <div class="col-md-4"></div>
       <div class="col-md-4" id="display">Time Remaining: 5</div>
@@ -30,18 +31,23 @@
       <div class="col-md-4" id="buttons"><button id="start">Start</button></div>
       <div class="col-md-4"></div>
     </div>
+
     <div id="question" class="question"></div>
+    <hr>
     <ul>
     <li><label class="option"><input type="radio" name="option" value="1" /><span id="opt1"></span></label></li>
     <li><label class="option"><input type="radio" name="option" value="2" /><span id="opt2"></span></label></li>
     <li><label class="option"><input type="radio" name="option" value="3" /><span id="opt3"></span></label></li>
     <li><label class="option"><input type="radio" name="option" value="4" /><span id="opt4"></span></label></li>
-  </ul>
+    </ul>
     <br>
+    
     <button id="nextButton" class="next-btn hide" onclick="loadNextQuestion();">Next Question</button>
+
+
   </div>
-  <div id="result" class="container result hide pulse"></div>
-  <div id="result2" class="container result hide pulse"></div>
+  <div id="result" class="result hide pulse"></div>
+  <div id="result2" class="result hide pulse"></div>
   <br>
   <button id="resetButton" class="reset-btn hide">Reset</button>
 
